@@ -1,4 +1,5 @@
 #include "TransformComponent.h"
+#include "Entity.h"
 
 TransformComponent::TransformComponent()
 {
@@ -62,6 +63,7 @@ sf::Vector2f TransformComponent::GetScale() const
 {
 	return Scale;
 }
+
 
 void TransformComponent::Start()
 {}

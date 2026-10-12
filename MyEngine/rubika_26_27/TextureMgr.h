@@ -4,6 +4,8 @@
 
 #include <filesystem>
 #include <string>
+#include <vector>
+#include <memory>
 
 struct AnimationData
 {
@@ -38,6 +40,9 @@ struct TextureData
 	// Container of AnimationData AnimationsData;
 	// Container of StaticTileData StaticTilesData;
 
+
+	std::string Name = "";
+
 	friend class TextureMgr;
 };
 
@@ -59,4 +64,9 @@ public:
 	 * Returns the corresponding TextureData using the name of the texture. Returns the default TextureData in case of an unknown name
 	 */
 	const TextureData& GetTextureData(const std::string& name) const;
+
+	std::vector<std::unique_ptr<TextureData>> TextureList;
+
+private:
+	TextureData DefaultTextureData;
 };

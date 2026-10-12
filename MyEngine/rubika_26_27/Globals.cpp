@@ -2,6 +2,7 @@
 
 #include <DebugMgr.h>
 #include <Logger.h>
+#include <TextureMgr.h>
 
 Globals gData;
 
@@ -9,6 +10,7 @@ Globals::Globals() : FrameCount(0)
 {
 	DebugMgr = new ::DebugMgr();
 	Logger = new ::Logger();
+	TextureMgr = new ::TextureMgr();
 }
 
 Globals::~Globals()

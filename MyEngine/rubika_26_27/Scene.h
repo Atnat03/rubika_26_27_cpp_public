@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <vector>
 
 namespace sf
 {
@@ -23,4 +24,19 @@ public:
 	 * Function that will be called each frame to draw the entity
 	*/
 	void Draw(sf::RenderWindow& window) const;
+
+	void AddEntity(class Entity entity);
+	void RemoveEntity(class Entity entity);
+
+	bool operator==(const Scene& other) const
+	{
+		return SceneName == other.SceneName;
+	}
+
+	std::string GetName() const;
+	std::vector<class Entity> EntitList;
+
+private:
+	std::string SceneName = "";
+
 };

@@ -2,6 +2,7 @@
 
 class DebugMgr;
 class Logger;
+class TextureMgr;
 
 class Globals
 {
@@ -17,6 +18,7 @@ public:
 
 	unsigned long long FrameCount;
 
+	TextureMgr* TextureMgr;
 	DebugMgr* DebugMgr;
 	Logger* Logger;
 };

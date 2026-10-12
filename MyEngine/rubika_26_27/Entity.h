@@ -1,6 +1,8 @@
 #pragma once
 
 #include <string>
+#include <TransformComponent.h>
+#include <SFML/Graphics.hpp>
 
 namespace sf
 {
@@ -22,4 +24,18 @@ public:
 	 * Function that will be called each frame to draw the entity
 	*/
 	void Draw(sf::RenderWindow& window) const;
+	
+	std::string GetName() const;
+
+	bool operator==(const Entity& other) const
+	{
+		return name == other.name;
+	}
+
+	TransformComponent Transform;
+
+private :
+	std::string name = "";
+
+	sf::CircleShape sprite;
 };

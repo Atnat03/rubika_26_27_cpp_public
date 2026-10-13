@@ -11,19 +11,6 @@ void DebugMgr::Draw()
 	{
 		if (ImGui::BeginTabBar("##Sections"))
 		{
-			if (ImGui::BeginTabItem("Debug Actions##Toto"))
-			{
-				for (const auto& [name, data] : Actions)
-				{
-					if (ImGui::Button(name.c_str()))
-					{
-						data.Callback(data.UserData);
-					}
-				}
-
-				ImGui::EndTabItem();
-			}
-
 			for (const auto& [name, ptr] : Debugables)
 			{
 				if (ImGui::BeginTabItem(name.c_str()))

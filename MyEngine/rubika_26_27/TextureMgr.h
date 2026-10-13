@@ -55,7 +55,17 @@ public:
 
 	void LoadXml(const std::filesystem::path& path);
 
+	void PrintDebug();
+	void PrintTextureData(TextureData& data);
+	void PrintAnimationData(AnimationData& data);
+	void PrintStaticData(StaticTileData& data);
+
 	std::map<std::string, TextureData> TextureList;
 
 	TextureData DefaultTextureData;
+
+private :
+	std::string SelectedTextureName;
+	bool ShowAnimations = false;
+	bool ShowStaticTiles = false;
 };

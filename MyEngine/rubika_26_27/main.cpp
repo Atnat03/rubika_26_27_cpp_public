@@ -7,6 +7,7 @@
 #include <Logger.h>
 #include <DebugMgr.h>
 #include <SceneManager.h>
+#include <TextureMgr.h>
 
 int main()
 {
@@ -62,6 +63,7 @@ int main()
         //Logger::DrawLogger();
 		sceneManager.DrawDebug();
         gData.DebugMgr->Draw();
+        gData.TextureMgr->PrintDebug();
 
         PROFILER_EVENT_END();
 

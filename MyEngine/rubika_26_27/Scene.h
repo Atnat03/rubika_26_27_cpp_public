@@ -25,8 +25,8 @@ public:
 	*/
 	void Draw(sf::RenderWindow& window) const;
 
-	void AddEntity(class Entity entity);
-	void RemoveEntity(class Entity entity);
+	void AddEntity(class Entity* entity);
+	void RemoveEntity(class Entity* entity);
 
 	bool operator==(const Scene& other) const
 	{
@@ -34,7 +34,7 @@ public:
 	}
 
 	std::string GetName() const;
-	std::vector<class Entity> EntitList;
+	std::vector<class Entity*> EntitList;
 
 private:
 	std::string SceneName = "";

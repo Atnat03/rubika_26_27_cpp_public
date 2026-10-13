@@ -16,10 +16,6 @@ int main()
 
     ImGui::SFML::Init(window);
 
-    Logger::Info("This is an info message. That is useful");
-    Logger::Warning("This is a warning message. Should I worry?");
-    Logger::Error("This is an error message. Oh sh*t!!");
-
     sf::Clock clock;
     clock.restart();
 
@@ -64,18 +60,19 @@ int main()
         // sample
         //ImGui::ShowDemoWindow();
         //Logger::DrawLogger();
-        gData.DebugMgr->Draw();
 		sceneManager.DrawDebug();
+        gData.DebugMgr->Draw();
 
         PROFILER_EVENT_END();
 
         PROFILER_EVENT_BEGIN(PROFILER_COLOR_GREEN, "Draw");
         window.clear();
 
+		sceneManager.Draw(window);
+
 #ifdef _USE_IMGUI
         ImGui::SFML::Render(window);
 #endif
-		sceneManager.Draw(window);
 
         window.display();
 

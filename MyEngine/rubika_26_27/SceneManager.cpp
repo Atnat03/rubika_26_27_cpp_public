@@ -1,7 +1,7 @@
 #include <SceneManager.h>
 #include <Scene.h>
 #include <Logger.h>
-#include <Entity.h>
+#include <Player.h>
 
 #ifdef _USE_IMGUI
 #include <Imgui/imgui.h>
@@ -147,15 +147,15 @@ void SceneManager::DrawDebug()
 		{
 			Logger::Warning("Scene name : " + activeScene->GetName());
 
-			for(Entity entity : activeScene->EntitList)
+			for(Entity* entity : activeScene->EntitList)
 			{
-				Logger::Warning("Entity name : " + entity.GetName());
+				Logger::Warning("Entity name : " + entity->GetName());
 			}
 		}
 
 		if (ImGui::Button("Add Entity"))
 		{
-			activeScene->AddEntity(Entity("Entity " + std::to_string(rand() % 100)));
+			activeScene->AddEntity(new Player("Player " + std::to_string(rand() % 100)));
 			Logger::Warning("new entity");
 		}
 

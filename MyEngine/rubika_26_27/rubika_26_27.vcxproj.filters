@@ -49,6 +49,12 @@
     <Filter Include="Source Files\Engine">
       <UniqueIdentifier>{77cc36a3-a68e-445f-aa36-8125cdd685a2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Game\Player">
+      <UniqueIdentifier>{6b8d3486-a2cc-42bd-88b4-2ca2af98ce42}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game\Player">
+      <UniqueIdentifier>{d6e5bfcf-ce3a-4901-b7a7-a43636353292}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Dependencies\Imgui\imgui.cpp">
@@ -95,6 +101,9 @@
     </ClCompile>
     <ClCompile Include="TextureMgr.cpp">
       <Filter>Source Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Source Files\Game\Player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -169,6 +178,9 @@
     </ClInclude>
     <ClInclude Include="TextureMgr.h">
       <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Header Files\Game\Player</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

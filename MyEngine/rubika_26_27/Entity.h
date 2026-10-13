@@ -4,6 +4,8 @@
 #include <TransformComponent.h>
 #include <SFML/Graphics.hpp>
 
+#include <TextureMgr.h>
+
 namespace sf
 {
 	class RenderWindow;
@@ -12,19 +14,17 @@ namespace sf
 class Entity
 {
 public:
-	Entity(std::string friendlyName = "");
+	Entity(std::string name = "");
 	virtual ~Entity();
 
 	virtual void Start();
 	virtual void Update(float fDeltaTime);
 	virtual void Destroy();
 
-	/*
-	 * This function will be removed later, when the rendering system will be more robust. But for now, we need it here.
-	 * Function that will be called each frame to draw the entity
-	*/
 	void Draw(sf::RenderWindow& window) const;
-	
+
+	void UpdateAnimation();
+
 	std::string GetName() const;
 
 	bool operator==(const Entity& other) const
@@ -34,8 +34,25 @@ public:
 
 	TransformComponent Transform;
 
-private :
+protected :
 	std::string name = "";
 
-	sf::CircleShape sprite;
+	sf::Texture texture;
+
+	sf::Sprite headSprite;
+	sf::Sprite bodySprite;
+
+	bool isMoving = false;
+
+	TextureData& textureData;
+
+	AnimationData headData;
+	AnimationData bodyData;
+
+	std::string currentAnimationHead = "";
+	std::string currentAnimationBody = "";
+
+	int currentFrameAnimation = 0;
+	float frameIntervale = 0.085f;
+	float elapsedTime = 0.f;
 };

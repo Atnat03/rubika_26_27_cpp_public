@@ -5,7 +5,7 @@
 #include <filesystem>
 #include <string>
 #include <vector>
-#include <memory>
+#include <map>
 
 struct AnimationData
 {
@@ -37,11 +37,9 @@ struct TextureData
 	~TextureData();
 
 	sf::Texture Texture;
-	// Container of AnimationData AnimationsData;
-	// Container of StaticTileData StaticTilesData;
 
-
-	std::string Name = "";
+	std::map<std::string, StaticTileData> StaticTilesData;
+	std::map<std::string, AnimationData> AnimationsData;
 
 	friend class TextureMgr;
 };
@@ -52,21 +50,12 @@ public:
 	void Init();
 	void Shut();
 
-	/*
-	 * Loads the texture using the given path, including its metadata.
-	 * Obviously, this function will also store the loaded data
-	 * If errors occur during the loading process, this function must return false.
-	 * Return true otherwise.
-	*/
 	bool LoadTexture(const std::filesystem::path& path);
-
-	/*
-	 * Returns the corresponding TextureData using the name of the texture. Returns the default TextureData in case of an unknown name
-	 */
 	const TextureData& GetTextureData(const std::string& name) const;
 
-	std::vector<std::unique_ptr<TextureData>> TextureList;
+	void LoadXml(const std::filesystem::path& path);
 
-private:
+	std::map<std::string, TextureData> TextureList;
+
 	TextureData DefaultTextureData;
 };

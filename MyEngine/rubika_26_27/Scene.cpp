@@ -12,44 +12,44 @@ Scene::~Scene()
 
 void Scene::Start()
 {
-	for (Entity entity : EntitList)
+	for (Entity* entity : EntitList)
 	{
-		entity.Start();
+		entity->Start();
 	}
 }
 
 void Scene::Update(float fDeltaTime)
 {
-	for (Entity entity : EntitList)
+	for (Entity* entity : EntitList)
 	{
-		entity.Update(fDeltaTime);
+		entity->Update(fDeltaTime);
 	}
 }
 
 void Scene::Destroy()
 {
-	for (Entity entity : EntitList)
+	for (Entity* entity : EntitList)
 	{
-		entity.Destroy();
+		entity->Destroy();
 	}
 }
 
 void Scene::Draw(sf::RenderWindow& window) const
 {
-	for(Entity entity : EntitList)
+	for(Entity* entity : EntitList)
 	{
-		entity.Draw(window);
+		entity->Draw(window);
 	}
 }
 
-void Scene::AddEntity(Entity entity)
+void Scene::AddEntity(Entity* entity)
 {
 	EntitList.push_back(entity);
 }
 
-void Scene::RemoveEntity(Entity entity)
+void Scene::RemoveEntity(Entity* entity)
 {
-	for(Entity e : EntitList)
+	for(Entity* e : EntitList)
 	{
 		if(e == entity)
 		{

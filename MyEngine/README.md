@@ -104,7 +104,7 @@ Our engine will only load textures with metadata (same path and same filename bu
         <SpritesOnLine>2</SpritesOnLine>
         <Reverted>0</Reverted>
     </Animation>
-    <Animation Name="Head_Down">
+    <Animation Name="Head_Up">
         <!-- ... -->
     </Animation>
     <!-- ... -->

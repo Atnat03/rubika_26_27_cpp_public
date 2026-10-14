@@ -74,7 +74,7 @@ void SceneManager::RemoveScene(std::string name)
 
 Scene* SceneManager::GetActiveScene() const
 {
-	for (size_t i = 0; i < SceneList.size(); i++)
+	for (int i = 0; i < SceneList.size(); i++)
 	{
 		if(i == activeSceneIndex)
 		{
@@ -87,12 +87,12 @@ Scene* SceneManager::GetActiveScene() const
 
 void SceneManager::SetNextSceneAsActive()
 {
-	activeSceneIndex = (activeSceneIndex + 1) % SceneList.size();
+	activeSceneIndex = (activeSceneIndex + 1) % (int)SceneList.size();
 }
 
 void SceneManager::SetPreviousSceneAsActive()
 {
-	activeSceneIndex = (activeSceneIndex - 1 + SceneList.size()) % SceneList.size();
+	activeSceneIndex = (activeSceneIndex - 1 + (int)SceneList.size()) % (int)SceneList.size();
 }
 
 Scene* SceneManager::GetActiveScene(std::string name) const

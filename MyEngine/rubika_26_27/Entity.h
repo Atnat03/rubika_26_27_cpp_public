@@ -4,9 +4,9 @@
 #include <SFML/Graphics.hpp>
 
 #include <TextureMgr.h>
+#include <vector>
 
-class TransformComponent;
-class RenderComponent;
+class IComponent;
 
 namespace sf
 {
@@ -18,6 +18,7 @@ class Entity
 public:
 	Entity(std::string name = "");
 	virtual ~Entity();
+
 
 	virtual void Start();
 	virtual void Update(float fDeltaTime);
@@ -34,10 +35,14 @@ public:
 		return name == other.name;
 	}
 
-	TransformComponent* Transform;
-	RenderComponent* Render;
+	template <typename C>
+	C* AddComponent();
+
+	template <typename C>
+	C* GetComponent() const;
 
 protected :
+
 	std::string name = "";
 
 	sf::Texture texture;
@@ -58,4 +63,9 @@ protected :
 	int currentFrameAnimation = 0;
 	float frameIntervale = 0.085f;
 	float elapsedTime = 0.f;
+
+private:
+	std::vector<IComponent*> Components;
 };
+
+#include <Component.hxx>

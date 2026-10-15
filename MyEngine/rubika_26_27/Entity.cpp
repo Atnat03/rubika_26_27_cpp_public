@@ -14,8 +14,9 @@ Entity::Entity(std::string name) :
 	bodySprite(gData.TextureMgr->DefaultTextureData.Texture),
 	textureData(gData.TextureMgr->DefaultTextureData)
 {
-	Transform = new TransformComponent(*this);
-	Render = new RenderComponent(*this);
+
+	AddComponent<TransformComponent>();
+	AddComponent<RenderComponent>();
 }
 
 Entity::~Entity()
@@ -24,7 +25,7 @@ Entity::~Entity()
 
 void Entity::Start()
 {
-	bool b = gData.TextureMgr->LoadTexture("D:\\C++\\rubika_26_27_cpp_public\\MyEngine\\Ressources\\IsaacSprite.png");
+/*	bool b = gData.TextureMgr->LoadTexture("D:\\C++\\rubika_26_27_cpp_public\\MyEngine\\Ressources\\IsaacSprite.png");
 
 	if (b)
 	{
@@ -36,22 +37,28 @@ void Entity::Start()
 		headSprite = sf::Sprite(texture);
 		bodySprite = sf::Sprite(texture);
 
-		Transform->SetWorldPosition({ 400.f, 300.f });
-		sf::Vector2 pos = Transform->GetWorldPosition();
 	
 		UpdateAnimation();
 	}
+*/
+	GetComponent<TransformComponent>()->SetWorldPosition({400.f, 300.f});
+	sf::Vector2 pos = GetComponent<TransformComponent>()->GetWorldPosition();
 }
 
 void Entity::Draw(sf::RenderWindow& window) const
 {
-	window.draw(bodySprite);
-	window.draw(headSprite);
+	for (auto d : GetComponent<RenderComponent>()->DrawableList)
+	{
+		d->Draw(window);
+	}
+
+	/*window.draw(bodySprite);
+	window.draw(headSprite);*/
 }
 
 void Entity::UpdateAnimation()
 {
-    sf::Vector2f pos = Transform->GetWorldPosition();
+    /*sf::Vector2f pos = Transform->GetWorldPosition();
 
 	if (!textureData.AnimationsData.contains(currentAnimationHead))	return;
 	if (!textureData.AnimationsData.contains(currentAnimationBody))	return;
@@ -86,7 +93,7 @@ void Entity::UpdateAnimation()
 	bodySprite.setPosition({
 		pos.x + headData.SizeX / 2.f,
 		pos.y + headData.SizeY - 5.f
-	});
+	});*/
 }
 
 void Entity::Update(float fDeltaTime)

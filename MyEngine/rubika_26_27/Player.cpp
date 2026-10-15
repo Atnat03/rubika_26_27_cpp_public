@@ -1,11 +1,16 @@
 #include <Player.h>
 
+#include <Globals.h>
 #include <Logger.h>
 #include <TransformComponent.h>
+#include <RenderComponent.h>
+#include <SpriteRenderer.h>
 
 Player::Player(std::string name) : Entity(name)
 {
 	SetPosition({ 400.f, 300.f });
+
+	gData.TextureMgr->LoadTexture("D:\\C++\\rubika_26_27_cpp_public\\MyEngine\\Ressources\\IsaacSprite.png");
 
 	Start();
 }
@@ -81,6 +86,10 @@ void Player::Start()
 	currentAnimationHead = "Head_Down";
 	currentAnimationBody = "Body_Vertical";
 
+	const TextureData& text = gData.TextureMgr->GetTextureData("IsaacSprite");
+
+	GetComponent<RenderComponent>()->AddDrawable<SpriteRenderer>(text.Texture);
+
 	Entity::Start();
 
 	UpdateAnimation();
@@ -88,8 +97,8 @@ void Player::Start()
 
 void Player::SetPosition(sf::Vector2f newPosition)
 {
-	Transform->SetWorldPosition(newPosition);
-	sf::Vector2 pos = Transform->GetWorldPosition();
+	GetComponent<TransformComponent>()->SetWorldPosition(newPosition);
+	sf::Vector2 pos = GetComponent<TransformComponent>()->GetWorldPosition();
 
 	headSprite.setPosition({ pos.x, pos.y });
 	bodySprite.setPosition(
@@ -99,5 +108,5 @@ void Player::SetPosition(sf::Vector2f newPosition)
 
 void Player::Move(sf::Vector2f velocity)
 {
-	SetPosition(Transform->GetWorldPosition() + velocity);
+	SetPosition(GetComponent<TransformComponent>()->GetWorldPosition() + velocity);
 }

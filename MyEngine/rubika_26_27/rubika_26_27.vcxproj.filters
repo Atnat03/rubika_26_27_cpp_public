@@ -55,6 +55,24 @@
     <Filter Include="Header Files\Game\Player">
       <UniqueIdentifier>{d6e5bfcf-ce3a-4901-b7a7-a43636353292}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Engine\Components">
+      <UniqueIdentifier>{ed2f1720-f294-4580-8e69-88d3fae32e54}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\Components">
+      <UniqueIdentifier>{00abdb7f-2fa7-41f8-ad0f-97350583b002}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Components\Transform">
+      <UniqueIdentifier>{a6a9bada-b17b-489a-af38-eb9096fb9119}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Components\Renderer">
+      <UniqueIdentifier>{6455e54f-347b-4c9e-a095-8d17859ab2da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\Components\Transform">
+      <UniqueIdentifier>{b3a681d8-af31-455c-aa25-f56e68190053}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\Components\Renderer">
+      <UniqueIdentifier>{4969bd42-0261-42b6-8c80-dce382e32cec}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Dependencies\Imgui\imgui.cpp">
@@ -84,9 +102,6 @@
     <ClCompile Include="SceneManager.cpp">
       <Filter>Source Files\Game\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="TransformComponent.cpp">
-      <Filter>Source Files\Game\Entity</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -104,6 +119,24 @@
     </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>Source Files\Game\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="IComponent.cpp">
+      <Filter>Source Files\Engine\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="TransformComponent.cpp">
+      <Filter>Source Files\Engine\Components\Transform</Filter>
+    </ClCompile>
+    <ClCompile Include="IDrawable.cpp">
+      <Filter>Source Files\Engine\Components\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderComponent.cpp">
+      <Filter>Source Files\Engine\Components\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteRenderer.cpp">
+      <Filter>Source Files\Engine\Components\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="RectagleRenderer.cpp">
+      <Filter>Source Files\Engine\Components\Renderer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -161,9 +194,6 @@
     <ClInclude Include="SceneManager.h">
       <Filter>Header Files\Game\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="TransformComponent.h">
-      <Filter>Header Files\Game\Entity</Filter>
-    </ClInclude>
     <ClInclude Include="DebugMgr.h">
       <Filter>Header Files\Engine</Filter>
     </ClInclude>
@@ -181,6 +211,27 @@
     </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>Header Files\Game\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="IComponent.h">
+      <Filter>Header Files\Engine\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="TransformComponent.h">
+      <Filter>Header Files\Engine\Components\Transform</Filter>
+    </ClInclude>
+    <ClInclude Include="IDrawable.h">
+      <Filter>Header Files\Engine\Components\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderComponent.h">
+      <Filter>Header Files\Engine\Components\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteRenderer.h">
+      <Filter>Header Files\Engine\Components\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="RectagleRenderer.h">
+      <Filter>Header Files\Engine\Components\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Component.hxx">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

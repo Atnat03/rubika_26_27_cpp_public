@@ -1,6 +1,7 @@
-#include "Player.h"
+#include <Player.h>
 
-#include "Logger.h"
+#include <Logger.h>
+#include <TransformComponent.h>
 
 Player::Player(std::string name) : Entity(name)
 {
@@ -87,8 +88,8 @@ void Player::Start()
 
 void Player::SetPosition(sf::Vector2f newPosition)
 {
-	Transform.SetWorldPosition(newPosition);
-	sf::Vector2 pos = Transform.GetWorldPosition();
+	Transform->SetWorldPosition(newPosition);
+	sf::Vector2 pos = Transform->GetWorldPosition();
 
 	headSprite.setPosition({ pos.x, pos.y });
 	bodySprite.setPosition(
@@ -98,5 +99,5 @@ void Player::SetPosition(sf::Vector2f newPosition)
 
 void Player::Move(sf::Vector2f velocity)
 {
-	SetPosition(Transform.GetWorldPosition() + velocity);
+	SetPosition(Transform->GetWorldPosition() + velocity);
 }

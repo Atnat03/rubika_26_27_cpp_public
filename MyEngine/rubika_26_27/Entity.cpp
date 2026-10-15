@@ -5,12 +5,18 @@
 #include <string.h>
 #include <utility>
 
+#include <TransformComponent.h>
+#include <RenderComponent.h>
+
 Entity::Entity(std::string name) : 
 	name(std::move(name)),
 	headSprite(gData.TextureMgr->DefaultTextureData.Texture), 
 	bodySprite(gData.TextureMgr->DefaultTextureData.Texture),
 	textureData(gData.TextureMgr->DefaultTextureData)
-{}
+{
+	Transform = new TransformComponent(*this);
+	Render = new RenderComponent(*this);
+}
 
 Entity::~Entity()
 {
@@ -30,8 +36,8 @@ void Entity::Start()
 		headSprite = sf::Sprite(texture);
 		bodySprite = sf::Sprite(texture);
 
-		Transform.SetWorldPosition({ 400.f, 300.f });
-		sf::Vector2 pos = Transform.GetWorldPosition();
+		Transform->SetWorldPosition({ 400.f, 300.f });
+		sf::Vector2 pos = Transform->GetWorldPosition();
 	
 		UpdateAnimation();
 	}
@@ -45,7 +51,7 @@ void Entity::Draw(sf::RenderWindow& window) const
 
 void Entity::UpdateAnimation()
 {
-    sf::Vector2f pos = Transform.GetWorldPosition();
+    sf::Vector2f pos = Transform->GetWorldPosition();
 
 	if (!textureData.AnimationsData.contains(currentAnimationHead))	return;
 	if (!textureData.AnimationsData.contains(currentAnimationBody))	return;

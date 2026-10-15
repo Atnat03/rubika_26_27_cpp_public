@@ -1,10 +1,12 @@
 #pragma once
 
 #include <string>
-#include <TransformComponent.h>
 #include <SFML/Graphics.hpp>
 
 #include <TextureMgr.h>
+
+class TransformComponent;
+class RenderComponent;
 
 namespace sf
 {
@@ -32,7 +34,8 @@ public:
 		return name == other.name;
 	}
 
-	TransformComponent Transform;
+	TransformComponent* Transform;
+	RenderComponent* Render;
 
 protected :
 	std::string name = "";

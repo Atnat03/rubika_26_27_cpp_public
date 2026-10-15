@@ -19,7 +19,6 @@ public:
 	Entity(std::string name = "");
 	virtual ~Entity();
 
-
 	virtual void Start();
 	virtual void Update(float fDeltaTime);
 	virtual void Destroy();
@@ -50,8 +49,6 @@ protected :
 	sf::Sprite headSprite;
 	sf::Sprite bodySprite;
 
-	bool isMoving = false;
-
 	TextureData& textureData;
 
 	AnimationData headData;
@@ -59,10 +56,6 @@ protected :
 
 	std::string currentAnimationHead = "";
 	std::string currentAnimationBody = "";
-
-	int currentFrameAnimation = 0;
-	float frameIntervale = 0.085f;
-	float elapsedTime = 0.f;
 
 private:
 	std::vector<IComponent*> Components;

@@ -19,6 +19,7 @@ public:
 
 	const sf::Transform& GetWorldTransform() const;
 	void SetWorldTransform(const sf::Transform& transform);
+	void SetWorldPosition(const sf::Vector2f& position);
 
 	void Draw(sf::RenderWindow& window) const;
 

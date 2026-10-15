@@ -1,5 +1,8 @@
 #include "IDrawable.h"
 
+#include <Logger.h>
+#include <string>
+
 IDrawable::IDrawable() : Visible(true), WorldTransform(sf::Transform::Identity), Drawable(nullptr)
 {}
 
@@ -24,6 +27,12 @@ const sf::Transform& IDrawable::GetWorldTransform() const
 void IDrawable::SetWorldTransform(const sf::Transform& transform)
 {
 	WorldTransform = transform;
+}
+
+void IDrawable::SetWorldPosition(const sf::Vector2f& position)
+{
+	WorldTransform = sf::Transform::Identity;
+	WorldTransform.translate(position);
 }
 
 void IDrawable::Draw(sf::RenderWindow& window) const

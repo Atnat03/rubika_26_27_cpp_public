@@ -11,6 +11,8 @@ Globals::Globals() : FrameCount(0)
 	DebugMgr = new ::DebugMgr();
 	Logger = new ::Logger();
 	TextureMgr = new ::TextureMgr();
+
+	gData.TextureMgr->LoadTexture("D:\\C++\\rubika_26_27_cpp_public\\MyEngine\\Ressources\\IsaacSprite.png");
 }
 
 Globals::~Globals()

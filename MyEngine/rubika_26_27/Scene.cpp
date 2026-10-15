@@ -1,6 +1,8 @@
 #include <Scene.h>
 #include <Entity.h>
 
+#include <Logger.h>
+
 Scene::Scene(const std::string& name)
 {
 	SceneName = name;

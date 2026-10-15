@@ -97,7 +97,12 @@ void Entity::UpdateAnimation()
 }
 
 void Entity::Update(float fDeltaTime)
-{}
+{
+	for (auto c : Components)
+	{
+		c->Update(fDeltaTime);
+	}
+}
 
 void Entity::Destroy()
 {

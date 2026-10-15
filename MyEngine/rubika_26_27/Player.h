@@ -12,7 +12,6 @@ public :
 	void Update(float fDeltaTime) override;
 	void Start() override;
 
-	void SetPosition(sf::Vector2f newPosition);
 	void Move(sf::Vector2f velocity);
 
 private :

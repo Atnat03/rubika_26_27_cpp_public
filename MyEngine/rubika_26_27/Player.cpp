@@ -5,12 +5,11 @@
 #include <TransformComponent.h>
 #include <RenderComponent.h>
 #include <SpriteRenderer.h>
+#include <string.h>
 
 Player::Player(std::string name) : Entity(name)
 {
-	SetPosition({ 400.f, 300.f });
-
-	gData.TextureMgr->LoadTexture("D:\\C++\\rubika_26_27_cpp_public\\MyEngine\\Ressources\\IsaacSprite.png");
+	GetComponent<TransformComponent>()->SetWorldPosition({ 400.f, 300.f });
 
 	Start();
 }
@@ -18,95 +17,89 @@ Player::Player(std::string name) : Entity(name)
 Player::~Player()
 {}
 
-void Player::Update(float fDeltaTime)
+
+void Player::Update(float dt)
 {
-	isMoving = false;
+    Entity::Update(dt);
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left))
-	{
-		Move(fDeltaTime * sf::Vector2f(-1.f, 0.f) * speed);
-		currentAnimationHead = "Head_Left";
-		currentAnimationBody = "Body_Left";
+    auto* renderer =
+        GetComponent<RenderComponent>()
+        ->GetDrawable<SpriteRenderer>();
 
-		isMoving = true;
-	}
+    if (!renderer)
+        return;
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right))
-	{
-		Move(fDeltaTime * sf::Vector2f(1.f, 0.f) * speed);
-		currentAnimationHead = "Head_Right";
-		currentAnimationBody = "Body_Right";
+    std::string animation = currentAnimationHead;
+    sf::Vector2f direction{ 0.f, 0.f };
 
-		isMoving = true;
-	}
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left))
+    {
+        direction.x -= 1.f;
+        animation = "Head_Left";
+    }
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up))
-	{
-		Move(fDeltaTime * sf::Vector2f(0.f, -1.f) * speed);
-		currentAnimationHead = "Head_Up";
-		currentAnimationBody = "Body_Vertical";
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right))
+    {
+        direction.x += 1.f;
+        animation = "Head_Right";
+    }
 
-		isMoving = true;
-	}
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up))
+    {
+        direction.y -= 1.f;
+        animation = "Head_Up";
+    }
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down))
-	{
-		Move(fDeltaTime * sf::Vector2f(0.f, 1.f) * speed);
-		currentAnimationHead = "Head_Down";
-		currentAnimationBody = "Body_Vertical";
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down))
+    {
+        direction.y += 1.f;
+        animation = "Head_Down";
+    }
 
-		isMoving = true;
-	}
+    if (direction.x != 0.f || direction.y != 0.f)
+    {
+        const float length = std::sqrt(
+            direction.x * direction.x +
+            direction.y * direction.y
+        );
 
-	if (isMoving)
-	{
-		elapsedTime += fDeltaTime;
+        direction /= length;
 
-		if (elapsedTime >= frameIntervale)
-		{
-			if (bodyData.AnimationSpriteCount > 0)
-			{
-				currentFrameAnimation =	(currentFrameAnimation + 1) % bodyData.AnimationSpriteCount;
-			}
+        Move(direction * speed * dt);
+        currentAnimationHead = animation;
+    }
 
-			elapsedTime -= frameIntervale;
-		}
-	}
-	else
-	{
-		currentFrameAnimation = 0;
-		elapsedTime = 0.f;
-	}
-
-	UpdateAnimation();
+    renderer->SetAnimation(currentAnimationHead);
 }
+
 
 void Player::Start()
 {
-	currentAnimationHead = "Head_Down";
-	currentAnimationBody = "Body_Vertical";
+    currentAnimationHead = "Head_Down";
+    currentAnimationBody = "Body_Vertical";
 
-	const TextureData& text = gData.TextureMgr->GetTextureData("IsaacSprite");
+    const TextureData& texture =
+        gData.TextureMgr->GetTextureData("IsaacSprite");
 
-	GetComponent<RenderComponent>()->AddDrawable<SpriteRenderer>(text.Texture);
+    auto* transform = GetComponent<TransformComponent>();
 
-	Entity::Start();
+    GetComponent<RenderComponent>()->AddDrawable<SpriteRenderer>(texture, this, *transform);
 
-	UpdateAnimation();
-}
+    Entity::Start();
 
-void Player::SetPosition(sf::Vector2f newPosition)
-{
-	GetComponent<TransformComponent>()->SetWorldPosition(newPosition);
-	sf::Vector2 pos = GetComponent<TransformComponent>()->GetWorldPosition();
-
-	headSprite.setPosition({ pos.x, pos.y });
-	bodySprite.setPosition(
-		{ pos.x + (headData.SizeX / 2 - bodyData.SizeX / 2),
-		pos.y + (headData.SizeY / 2 + bodyData.SizeY / 2) });
+    GetComponent<RenderComponent>()->GetDrawable<SpriteRenderer>()->SetAnimation(currentAnimationHead);
 }
 
 void Player::Move(sf::Vector2f velocity)
 {
-	SetPosition(GetComponent<TransformComponent>()->GetWorldPosition() + velocity);
+	auto* transform = GetComponent<TransformComponent>();
+
+	sf::Vector2f newPosition = transform->GetWorldPosition() + velocity;
+
+	transform->SetWorldPosition(newPosition);
+
+	auto* renderer = GetComponent<RenderComponent>()->GetDrawable<SpriteRenderer>();
+
+	if (renderer)
+		renderer->SetWorldPosition(newPosition);
 }

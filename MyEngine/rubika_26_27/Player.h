@@ -3,6 +3,10 @@
 #include <Entity.h>
 #include <string.h>
 
+class SpriteRenderer;
+class TransformComponent;
+struct AnimationData;
+
 class Player : public Entity
 {
 public :
@@ -16,5 +20,16 @@ public :
 
 private :
 	float speed = 200.f;
+
+	SpriteRenderer* headSprite;
+	SpriteRenderer* bodySprite;
+
+	TransformComponent* transform;
+
+	AnimationData headData;
+	AnimationData bodyData;
+
+	std::string currentAnimationHead = "";
+	std::string currentAnimationBody = "";
 };
 

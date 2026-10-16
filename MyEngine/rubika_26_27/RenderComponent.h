@@ -33,14 +33,6 @@ D* RenderComponent::AddDrawable(Arg&&... args)
 {
     static_assert(std::is_base_of_v<IDrawable, D>, "D must inherit from IDrawable");
 
-    for (auto* d : DrawableList)
-    {
-        if (dynamic_cast<D*>(d) != nullptr)
-        {
-            return nullptr;
-        }
-    }
-
     D* drawable = new D(std::forward<Arg>(args)...);
     DrawableList.push_back(drawable);
 

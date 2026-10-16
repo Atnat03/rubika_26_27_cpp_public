@@ -20,13 +20,13 @@ public:
 	void SetAnimation(const std::string&);
 	void SetFrameAnimation(int newFrame);
 
+	AnimationControllerComponent Animator;
 private:
 	const TextureData* DataTexture;
 	TransformComponent* Transform = nullptr;
 	
 	sf::Sprite* Sprite = nullptr;
 
-	AnimationControllerComponent Animator;
 
 	void UpdateTextureRect();
 };

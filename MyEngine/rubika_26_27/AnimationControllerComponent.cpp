@@ -1,5 +1,7 @@
 #include "AnimationControllerComponent.h"
 
+#include <Logger.h>
+
 AnimationControllerComponent::AnimationControllerComponent(Entity& entity, const TextureData* data)
 	: IComponent(entity),
 	DataTexture(data)
@@ -8,7 +10,9 @@ AnimationControllerComponent::AnimationControllerComponent(Entity& entity, const
 }
 
 AnimationControllerComponent::~AnimationControllerComponent(){}
-void AnimationControllerComponent::Start(){}
+void AnimationControllerComponent::Start()
+{}
+
 void AnimationControllerComponent::Destroy(){}
 
 void AnimationControllerComponent::SetAnimation(const std::string& name)

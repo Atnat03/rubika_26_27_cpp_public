@@ -25,8 +25,6 @@ public:
 
 	void Draw(sf::RenderWindow& window) const;
 
-	void UpdateAnimation();
-
 	std::string GetName() const;
 
 	bool operator==(const Entity& other) const
@@ -46,16 +44,7 @@ protected :
 
 	sf::Texture texture;
 
-	sf::Sprite headSprite;
-	sf::Sprite bodySprite;
-
 	TextureData& textureData;
-
-	AnimationData headData;
-	AnimationData bodyData;
-
-	std::string currentAnimationHead = "";
-	std::string currentAnimationBody = "";
 
 private:
 	std::vector<IComponent*> Components;

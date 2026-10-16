@@ -105,7 +105,7 @@ void TextureMgr::LoadXml(const std::filesystem::path& path)
                 data.IsReverted = std::stoi(anim->first_node("Reverted")->value());
 
             if (anim->first_node("TimeBetweenAnimation") != nullptr)
-                data.TimeBetweenAnimationInS = (float)std::stoi(anim->first_node("TimeBetweenAnimation")->value());
+                data.TimeBetweenAnimationInS = std::stof(anim->first_node("TimeBetweenAnimation")->value());
 
             textureData.AnimationsData.emplace(name, data);
 
